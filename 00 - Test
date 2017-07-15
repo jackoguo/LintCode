@@ -1,0 +1,5 @@
+public Class Solution {
+  void welcome{
+    System.out.print("Welcome");
+  }
+}
