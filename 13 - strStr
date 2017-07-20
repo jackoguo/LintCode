@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int strStr(const char *source, const char *target) {
+        if (source == NULL || target == NULL) {
+            return -1;
+        }
+        int targetSize = strlen(target);
+        int sourceSize = strlen(source);
+        int i, j;
+        for (i = 0; i < sourceSize - targetSize + 1; i++) {
+            for (j = 0; j < targetSize; j++) {
+                if (source[i + j] != target[j]) {
+                    break;
+                }
+            }
+            if (j == targetSize) {
+                return i;
+            }
+        }
+        return -1;
+    }
+};
