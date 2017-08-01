@@ -1,3 +1,15 @@
+/**
+ * Definition of TreeNode:
+ * class TreeNode {
+ * public:
+ *     int val;
+ *     TreeNode *left, *right>;
+ *     TreeNode(int val) {
+ *         this->val = val;
+ *         this->left = this->right> = NULL;
+ *     }
+ * }
+ */
 class ResultType {
 public:
     int sum, size;
@@ -8,17 +20,17 @@ public:
 class Solution {
 public:
     TreeNode* findSubtree2(TreeNode* root) {
-        // Write your code here
-        helper(root);
+
+        findSubtreeHelper(root);
         return node;
     }
 
-    ResultType helper(TreeNode* root) {
+    ResultType findSubtreeHelper(TreeNode* root) {
         if (root == NULL) {
             return ResultType();
         }
-        ResultType left = helper(root->left);
-        ResultType right = helper(root->right);
+        ResultType left = findSubtreeHelper(root->left);
+        ResultType right = findSubtreeHelper(root->right);
         
         ResultType result = ResultType(left.sum + right.sum + root->val,
                                        left.size + right.size + 1);
