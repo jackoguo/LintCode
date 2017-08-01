@@ -1,0 +1,28 @@
+class Solution {
+public:
+    int searchBigSortedArray(ArrayReader *reader, int target) {
+        int e = 1;
+        while (reader->get(e) < target) {
+            e *= 2;
+        }
+        
+        int s = 0;
+        while (s + 1 < e) {
+            int mid = s + (e - s) / 2;
+            int v = reader->get(mid);
+            if (v == target) {
+                e = mid;
+            } else if (v < target) {
+                s = mid;
+            } else {
+                e = mid;
+            }
+        }
+        if (reader->get(s) == target) {
+            return s;
+        } else if (reader->get(e) == target) {
+            return e;
+        }
+        return -1;
+    }
+};
