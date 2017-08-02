@@ -1,0 +1,30 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left, *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+
+    int longestConsecutive(TreeNode* root) {
+        return helper(root, nullptr, 0);
+    }
+    
+    int helper(TreeNode* child, TreeNode* parent, int len) {
+        if (child == nullptr) {
+            return 0;
+        }
+        int l;
+        if (parent != nullptr && parent->val + 1 == child->val) {
+            l = len + 1;
+        }
+        else l = 1;
+        int left = helper(child->left, child, l);
+        int right = helper(child->right, child, l);
+        return max(l, max(left, right));
+
+    } 
+};
